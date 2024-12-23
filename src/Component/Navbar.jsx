@@ -4,6 +4,8 @@ import AuthContext from "../Context/Authcontext/AuthContext";
 import logo from '../assets/Logo/logo3.png'
 import { IoIosHome, IoMdAddCircleOutline } from "react-icons/io";
 import { MdOutlineEventAvailable } from "react-icons/md";
+import { ImProfile } from "react-icons/im";
+import { PiBookmarks } from "react-icons/pi";
 
 const Navbar = () => {
   const { user, SignOut } = useContext(AuthContext);
@@ -45,7 +47,9 @@ const Navbar = () => {
         </span>
         Available Cars
       </NavLink>
-      <NavLink
+    {
+      user && <>
+         <NavLink
         className={({ isActive }) =>
           isActive
             ? "px-3 py-1 text-base text-[#FE9307] font-medium flex gap-1 items-center"
@@ -58,8 +62,12 @@ const Navbar = () => {
         </span>
         Add Car
       </NavLink>
+      </>
+    }
 
-      <NavLink
+     {
+      user && <>
+       <NavLink
         className={({ isActive }) =>
           isActive
             ? "px-3 py-1 text-base text-[#FE9307] font-medium flex gap-1 items-center"
@@ -68,15 +76,34 @@ const Navbar = () => {
         to="/my-cars"
       >
          <span>
-         <IoMdAddCircleOutline />
+         <ImProfile />
         </span>
         My Cars
       </NavLink>
+      </>
+     }
+     {
+      user && <>
+       <NavLink
+        className={({ isActive }) =>
+          isActive
+            ? "px-3 py-1 text-base text-[#FE9307] font-medium flex gap-1 items-center"
+            : "flex gap-1 items-center text-sm font-medium px-3"
+        }
+        to="/my-bookings"
+      >
+         <span>
+         <PiBookmarks />
+        </span>
+        My Bookings
+      </NavLink>
+      </>
+     }
     </>
   </>
   
   return (
-    <div className="navbar bg-base-100 mx-auto mt-0 py-0">
+    <div className="navbar bg-[#ffffff] mx-auto mt-0 py-0">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

@@ -9,6 +9,8 @@ import Login from "../Pages/Login";
 import Available from "../Pages/Available";
 import AddCar from "../Pages/AddCar";
 import Mycars from "../Pages/Mycars";
+import PrivateRoute from "./PrivateRoute";
+import MyBookings from "../Pages/MyBookings";
 
   const Router = createBrowserRouter([
     {
@@ -33,11 +35,15 @@ import Mycars from "../Pages/Mycars";
         },
         {
             path:"/add-car",
-            element:<AddCar/>
+            element:<PrivateRoute><AddCar/></PrivateRoute>
         },
         {
             path:"/my-cars",
-            element:<Mycars/>
+            element:<PrivateRoute><Mycars/></PrivateRoute>
+        },
+        {
+            path:"/my-bookings",
+            element:<PrivateRoute><MyBookings/></PrivateRoute>
         },
 
       ]
