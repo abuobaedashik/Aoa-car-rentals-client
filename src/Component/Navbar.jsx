@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import AuthContext from "../Context/Authcontext/AuthContext";
-import logo from '../assets/icons8-job-seeker-color/logo.png'
-import { IoIosHome } from "react-icons/io";
+import logo from '../assets/Logo/logo3.png'
+import { IoIosHome, IoMdAddCircleOutline } from "react-icons/io";
+import { MdOutlineEventAvailable } from "react-icons/md";
 
 const Navbar = () => {
   const { user, SignOut } = useContext(AuthContext);
@@ -21,8 +22,8 @@ const Navbar = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? "px-1 py-1 text-lg font-semibold flex gap-1 items-center"
-            : " flex gap-1 items-center"
+            ? "px-3 py-1 text-base text-[#FE9307] font-medium flex gap-1 items-center"
+            : " flex gap-1 items-center text-sm font-medium px-3"
         }
         to="/"
       >
@@ -34,48 +35,48 @@ const Navbar = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? "px-3 py-1 text-lg bg-[#b4d4ff] font-semibold flex gap-1 items-center"
-            : "flex gap-1 items-center "
+            ? "px-3 py-1 text-base text-[#FE9307] font-medium flex gap-1 items-center"
+            : "flex gap-1 items-center text-sm font-medium px-3"
         }
-        to="/about"
+        to="/available"
       >
-       
-          About 
+         <span>
+         <MdOutlineEventAvailable />
+        </span>
+        Available Cars
       </NavLink>
-      {/* <NavLink
+      <NavLink
         className={({ isActive }) =>
           isActive
-            ? "px-3 py-1 text-lg bg-[#b4d4ff] font-semibold flex gap-1 items-center"
-            : " flex gap-1 items-center"
+            ? "px-3 py-1 text-base text-[#FE9307] font-medium flex gap-1 items-center"
+            : "flex gap-1 items-center text-sm font-medium px-3"
         }
-        to="/addreview"
+        to="/add-car"
       >
-       
-      </NavLink> */}
-      {/* <NavLink
+         <span>
+         <IoMdAddCircleOutline />
+        </span>
+        Add Car
+      </NavLink>
+
+      <NavLink
         className={({ isActive }) =>
           isActive
-            ? "px-3 py-1 text-lg bg-[#b4d4ff] font-semibold flex gap-1 items-center"
-            : " flex gap-1 items-center"
+            ? "px-3 py-1 text-base text-[#FE9307] font-medium flex gap-1 items-center"
+            : "flex gap-1 items-center text-sm font-medium px-3"
         }
-        to="/myreview"
+        to="/my-cars"
       >
-        My Reviews
-      </NavLink> */}
-      {/* <NavLink
-        className={({ isActive }) =>
-          isActive
-            ? "px-3 py-1 text-lg bg-[#b4d4ff] font-semibold flex gap-1 items-center"
-            : " flex gap-1 items-center"
-        }
-        to="/wishlist"
-      >
-        WatchList
-      </NavLink> */}
+         <span>
+         <IoMdAddCircleOutline />
+        </span>
+        My Cars
+      </NavLink>
     </>
   </>
+  
   return (
-    <div className="navbar bg-base-100 mx-auto w-11/12">
+    <div className="navbar bg-base-100 mx-auto mt-0 py-0">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -101,11 +102,11 @@ const Navbar = () => {
            {link}
           </ul>
         </div>
-        <div className="text-xl flex items-center gap-3 ">
+        <div className="text-xl flex items-center gap-2  ">
          <div className="rounded-full">
-           <img src={logo} className="w-8 h-8" alt="" />
+           <img src={logo} className="w-20 h-20" alt="" />
          </div>
-         <div className="text">Job Portal</div>
+         <div className="text-2xl font-bold text-[#FFA633]"><span className=" font-semibold text-[#131313]">Quick</span> Car Rentals</div>
            </div>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -121,14 +122,28 @@ const Navbar = () => {
       ) : (
         <div className="">
           <div className="flex items-center  gap-3 mr-5">
-            <NavLink to={"/register"}>
+            <NavLink
+               className={({ isActive }) =>
+                isActive
+                  ? "rounded-md px-3 py-1 text-[#ffffff] bg-[#FFA633] font-bold"
+                  : "flex gap-1 items-center text-sm font-medium px-3"
+              }
+            to={"/register"}>
               <button>Register</button>
             </NavLink>
-            <NavLink to={"/login"}>
-              <button className="rounded-md px-3 py-1 text-[#ffffff] bg-[#407BFF] font-bold">
+            <NavLink
+             className={({ isActive }) =>
+              isActive
+                ? "rounded-md px-3 py-1 text-[#ffffff] bg-[#FFA633] font-bold"
+                : "flex gap-1 items-center text-sm font-medium px-3"
+            }
+             to={"/login"}>
+              <button >
                 Login
               </button>
             </NavLink>
+
+            {/* className="rounded-md px-3 py-1 text-[#ffffff] bg-[#FFA633] font-bold" */}
           </div>
         </div>
       )}
