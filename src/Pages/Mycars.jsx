@@ -2,7 +2,7 @@ import axios from "axios";
 import { useContext } from "react";
 import { useEffect, useState } from "react";
 import AuthContext from "../Context/Authcontext/AuthContext";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import { MdOutlineDelete, MdOutlineUpdate } from "react-icons/md";
 import Swal from "sweetalert2";
@@ -116,7 +116,9 @@ const Mycars = () => {
                 <td>{car?.availability}</td>
                 <td>{car?.date}</td>
                 <td className="flex items-center justify-center gap-2 text-base py-4 font-extrabold">
-                   <button className="bg-[#fe9307d1] rounded-md text-[#766956] px-3 py-1"><MdOutlineUpdate /></button>
+                    <Link to={`/update/${car?._id}`}>
+                    <button className="bg-[#fe9307d1] rounded-md text-[#766956] px-3 py-1"><MdOutlineUpdate /></button>
+                    </Link>
                     <button onClick={() => handleDelete(car?._id)} className="bg-[#fe9307d1] px-3 py-1 rounded-md text-[#766956]"><MdOutlineDelete /></button>
                 </td>
               </tr>

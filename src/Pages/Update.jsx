@@ -1,37 +1,60 @@
 import React, { useContext } from "react";
+import { useLoaderData } from "react-router-dom";
 import AuthContext from "../Context/Authcontext/AuthContext";
+import Swal from "sweetalert2";
 
-const AddCar = () => {
-  const { user } = useContext(AuthContext);
-  const handleSubmit = (e) => {
+const Update = () => {
+    const data = useLoaderData();
+  const {user}=useContext(AuthContext)
+  console.log(data);
+  const {
+    availability,
+    date,
+    description,
+    Features,
+    image,
+    location,
+    model,
+    reg_no,
+    rental_price,
+    }= data
+
+    const handleUpdate =e =>{
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const carData = Object.fromEntries(formData.entries());
-    console.log(carData);
+    const updateData = new FormData(e.target);
+    const updateCarData = Object.fromEntries(updateData.entries());
+    console.log(updateCarData);
     // const {min,max,currency, ...newJob} = jobData;
-    const { gear,person,year,...newData } = carData;
-    newData.Features = { gear,person, year };
-    newData.admin_email=user?.email
-    console.log(newData);
-    // post (create api)
-    fetch("http://localhost:4000/cars", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newData),
-    })
-    .then(res=>res.json())
-    .then(data=>{
-      console.log(data)})
-  };
+    const { gear,person,year,...finalData } = updateCarData;
+    finalData.Features = { gear,person, year };
+    finalData.admin_email=user?.email
+    console.log(finalData);
+
+    fetch(`http://localhost:4000/update/${data._id}`,{
+        method:'PUT',
+        headers:{
+          'content-type':'application/json'},
+        body:JSON.stringify(finalData)
+      })
+      .then(res=>res.json())
+     .then(data=>{
+        console.log(data);
+       if (data.modifiedCount >0) {
+        Swal.fire({
+            title: "Thanks",
+            text: "Car data Updated Successfully !",
+            icon: "success"
+          });
+       }
+     })
+    }
   return (
     <div>
       <div>
         <div className="py-6 ">
-          <form onSubmit={handleSubmit} className="p-5 ">
-            <div className="flex items-center flex-col mx-auto px-6 py-3 w-8/12 border border-blue-500 rounded-xl bg-gradient-to-r from-[#F5F7F6] to-[#fe930779] ">
-              <div className="text-3xl font-bold mt-3 mb-5 ">Add a Car</div>
+          <form onSubmit={handleUpdate} className="p-5 ">
+            <div className="flex items-center flex-col mx-auto px-6 py-3 w-8/12 border border-blue-500 rounded-xl bg-gradient-to-r from-[#fe930779] to-[#F5F7F6] ">
+              <div className="text-3xl font-bold mt-3 mb-5 ">Update Added Car</div>
               {/* model and name="rental-price"*/}
               <div className=" grid  grid-cols-1 items-center gap-4 w-full">
                 <div className="flex  flex-col gap-1 ">
@@ -42,6 +65,7 @@ const AddCar = () => {
                     type="text"
                     placeholder="Enter Car Model"
                     name="model"
+                    defaultValue={model}
                     className=" input-accent px-5 py-1 rounded-md "
                   />
                 </div>
@@ -53,6 +77,7 @@ const AddCar = () => {
                     <input
                       type="number"
                       name="rental_price"
+                      defaultValue={rental_price}
                       placeholder="Enter Company Location "
                       className="w-full input-accent px-5 py-1 rounded-md "
                     />
@@ -68,6 +93,7 @@ const AddCar = () => {
                   </span>
                   <select
                     name="availability"
+                    defaultValue={availability}
                     className="w-full input-accent px-5 py-1 rounded-md "
                   >
                     <option disabled>Chose a option</option>
@@ -85,6 +111,7 @@ const AddCar = () => {
                     type="text"
                     placeholder="Enter Vehical Registation No"
                     name="reg_no"
+                    defaultValue={reg_no}
                     className=" input-accent px-5 py-1 rounded-md "
                   />
                 </div>
@@ -93,13 +120,13 @@ const AddCar = () => {
               <div className=" grid  grid-cols-1 items-center gap-4 w-full">
                 <div className="flex  flex-col gap-1">
                   <span className="ml-2 mt-2 mb-1 text-base font-semibold ">
-                     Data 
+                    Data
                   </span>
                   <div className="w-full">
                     <input
                       type="date"
                       name="date"
-                      
+                      defaultValue={date}
                       className="w-full input-accent px-5 py-1 rounded-md "
                       required
                     />
@@ -115,6 +142,7 @@ const AddCar = () => {
                   </span>
                   <select
                     name="gear"
+                    defaultValue={Features?.gear}
                     className="w-full input-accent px-5 py-1 rounded-md "
                   >
                     <option disabled>choose gear</option>
@@ -133,6 +161,7 @@ const AddCar = () => {
                   <input
                     type="number"
                     name="person"
+                    defaultValue={Features?.person}
                     placeholder="Enter Person Number"
                     className="w-full input-accent px-5 py-1 rounded-md "
                   />
@@ -145,6 +174,7 @@ const AddCar = () => {
                   </span>
                   <select
                     name="year"
+                    defaultValue={Features?.year}
                     className="w-full input-accent px-5 py-1 rounded-md "
                   >
                     <option disabled>choose the year</option>
@@ -169,6 +199,7 @@ const AddCar = () => {
                   <span className="my-2 ">Car Details</span>
                   <textarea
                     name="description"
+                    defaultValue={description}
                     placeholder="Enter Cars Description "
                     className="textarea textarea-bordered textarea-lg w-full "
                     required
@@ -185,6 +216,7 @@ const AddCar = () => {
                     <input
                       type="text"
                       name="image"
+                      defaultValue={image}
                       placeholder="Enter image url"
                       className="w-full input-accent px-5 py-1 rounded-md "
                     />
@@ -229,6 +261,7 @@ const AddCar = () => {
                   <input
                     type="text"
                     name="location"
+                    defaultValue={location}
                     placeholder="Enter Location"
                     className="w-full input-accent px-5 py-1 rounded-md"
                     required
@@ -250,4 +283,4 @@ const AddCar = () => {
   );
 };
 
-export default AddCar;
+export default Update;

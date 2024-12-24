@@ -11,6 +11,8 @@ import AddCar from "../Pages/AddCar";
 import Mycars from "../Pages/Mycars";
 import PrivateRoute from "./PrivateRoute";
 import MyBookings from "../Pages/MyBookings";
+import Update from "../Pages/Update";
+
 
   const Router = createBrowserRouter([
     {
@@ -45,6 +47,16 @@ import MyBookings from "../Pages/MyBookings";
             path:"/my-bookings",
             element:<PrivateRoute><MyBookings/></PrivateRoute>
         },
+        {
+            path:"/update/:id",
+            element:<Update></Update>,
+            loader:({params})=>fetch(`http://localhost:4000/update/${params.id}`)
+        },
+         
+         {
+          path:'*',
+          element:<h2 className="text-3xl font-bold min-h-screen flex items-center justify-center text-red-700">Page Not Found</h2>
+        }
 
       ]
     },
