@@ -25,7 +25,7 @@ const Navbar = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? "px-3 py-1 text-base text-[#FE9307] font-medium flex gap-1 items-center"
+            ? "px-3 text-base text-[#FE9307] font-medium flex gap-1 items-center"
             : " flex gap-1 items-center text-sm font-medium px-3"
         }
         to="/"
@@ -38,7 +38,7 @@ const Navbar = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? "px-3 py-1 text-base text-[#FE9307] font-medium flex gap-1 items-center"
+            ? "px-3 text-base text-[#FE9307] font-medium flex gap-1 items-center"
             : "flex gap-1 items-center text-sm font-medium px-3"
         }
         to="/available"
@@ -53,7 +53,7 @@ const Navbar = () => {
          <NavLink
         className={({ isActive }) =>
           isActive
-            ? "px-3 py-1 text-base text-[#FE9307] font-medium flex gap-1 items-center"
+            ? "px-3 text-base text-[#FE9307] font-medium flex gap-1 items-center"
             : "flex gap-1 items-center text-sm font-medium px-3"
         }
         to="/add-car"
@@ -71,7 +71,7 @@ const Navbar = () => {
        <NavLink
         className={({ isActive }) =>
           isActive
-            ? "px-3 py-1 text-base text-[#FE9307] font-medium flex gap-1 items-center"
+            ? "px-3 text-base text-[#FE9307] font-medium flex gap-1 items-center"
             : "flex gap-1 items-center text-sm font-medium px-3"
         }
         to="/my-cars"
@@ -88,7 +88,7 @@ const Navbar = () => {
        <NavLink
         className={({ isActive }) =>
           isActive
-            ? "px-3 py-1 text-base text-[#FE9307] font-medium flex gap-1 items-center"
+            ? "px-3 text-base text-[#FE9307] font-medium flex gap-1 items-center"
             : "flex gap-1 items-center text-sm font-medium px-3"
         }
         to="/my-bookings"
@@ -112,7 +112,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 space-y-4 shadow"
           >
            {link}
           </ul>

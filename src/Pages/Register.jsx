@@ -4,6 +4,8 @@ import { useContext, useState } from 'react';
 import AuthContext from '../Context/Authcontext/AuthContext';
 import { Link,  Navigate, useLocation, useNavigate  } from 'react-router-dom';
 import googlelogo from '../assets/Logo/googleicon.png'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   // const [show,setshow] =useState(false)
@@ -42,12 +44,12 @@ const Register = () => {
       const handleGoogleSignIn =()=>{
         googleSignIn()
         .then((result)=>{
-          // console.log(result.user);
+          console.log(result.user);
           navigate(location?.state ? location?.state : "/");
         })
         .catch((error)=>{
          const errorMessage = error.message;
-        //  console.log(errorMessage);
+         console.log(errorMessage);
         })
       }
     return (
@@ -93,6 +95,7 @@ const Register = () => {
           </div>
           </div>
         </div>
+        <ToastContainer></ToastContainer>
       </div>
     );
 };

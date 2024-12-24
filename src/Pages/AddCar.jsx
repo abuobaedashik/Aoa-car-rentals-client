@@ -52,7 +52,7 @@ const AddCar = () => {
                   <div className="w-full">
                     <input
                       type="number"
-                      name="rental-price"
+                      name="rental_price"
                       placeholder="Enter Company Location "
                       className="w-full input-accent px-5 py-1 rounded-md "
                     />
