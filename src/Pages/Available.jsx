@@ -5,6 +5,7 @@ import { BiSort } from "react-icons/bi";
 import { FaSortDown } from "react-icons/fa";
 import { MdGridView } from "react-icons/md";
 import { HiViewList } from "react-icons/hi";
+import AvailableCard from "../Component/AvailableCard";
 
 const Available = ({ title, route_name }) => {
   title = <>Available Car</>;
@@ -21,8 +22,8 @@ const Available = ({ title, route_name }) => {
         <ReusableBanner title={title} route_name={route_name}></ReusableBanner>
       </div>
       <div className="bg-[#ffffff] text-sm text-[#13131376] w-full ">
-        <div className="mx-auto w-11/12 py-6 flex items-center justify-between">
-          <p className="text-sm ">total available car {availableCar.length}</p>
+        <div className="mx-auto px-8 py-6 flex items-center justify-between">
+          <p className="text-sm hidden md:flex">total available car {availableCar.length}</p>
           <p className="flex items-center ">
             <BiSort />
             <p>Sort By </p>
@@ -61,7 +62,11 @@ const Available = ({ title, route_name }) => {
           </p>
         </div>
       </div>
-      available
+       <div className="py-16 px-4 mx-auto w-11/12 grid grid-col-1 md:grid-cols-3 gap-x-5 gap-y-10 ">
+           {
+            availableCar.map(car=><AvailableCard key={car._id} car={car}></AvailableCard>)
+           }
+       </div>
     </div>
   );
 };

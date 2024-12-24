@@ -107,9 +107,9 @@ const Mycars = ({ title, route_name }) => {
                     <th>1</th>
                     <td>
                       <div className="avatar">
-                        <div className="mask mask-squircle h-12 w-12">
+                        <div className="rounded-sm h-12 w-12">
                           <img
-                            src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                            src={car?.image}
                             alt={car?.model}
                           />
                         </div>
