@@ -33,7 +33,8 @@ import Update from "../Pages/Update";
         },
         {
             path:"/available",
-            element:<Available></Available>
+            element:<Available></Available>,
+            loader:()=>fetch('http://localhost:4000/cars')
         },
         {
             path:"/add-car",

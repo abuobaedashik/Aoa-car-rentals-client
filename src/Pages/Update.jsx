@@ -2,9 +2,12 @@ import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import AuthContext from "../Context/Authcontext/AuthContext";
 import Swal from "sweetalert2";
+import ReusableBanner from "../Component/Shared/ReusableBanner";
 
-const Update = () => {
+const Update = ({title,route_name}) => {
     const data = useLoaderData();
+    title = <>Update Added Cars Data</>
+    route_name=<>my-cars/update</>
   const {user}=useContext(AuthContext)
   console.log(data);
   const {
@@ -51,7 +54,10 @@ const Update = () => {
   return (
     <div>
       <div>
-        <div className="py-6 ">
+      <div className="mb-6">
+             <ReusableBanner title={title} route_name={route_name}></ReusableBanner>
+           </div>
+        <div className="py-6 mt-10">
           <form onSubmit={handleUpdate} className="p-5 ">
             <div className="flex items-center flex-col mx-auto px-6 py-3 w-8/12 border border-blue-500 rounded-xl bg-gradient-to-r from-[#fe930779] to-[#F5F7F6] ">
               <div className="text-3xl font-bold mt-3 mb-5 ">Update Added Car</div>

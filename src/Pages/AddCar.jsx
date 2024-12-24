@@ -1,7 +1,10 @@
 import React, { useContext } from "react";
 import AuthContext from "../Context/Authcontext/AuthContext";
+import ReusableBanner from "../Component/Shared/ReusableBanner";
 
-const AddCar = () => {
+const AddCar = ({title,route_name}) => {
+  title = <>Add Car</>
+  route_name=<>add-car</>
   const { user } = useContext(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -9,9 +12,9 @@ const AddCar = () => {
     const carData = Object.fromEntries(formData.entries());
     console.log(carData);
     // const {min,max,currency, ...newJob} = jobData;
-    const { gear,person,year,...newData } = carData;
-    newData.Features = { gear,person, year };
-    newData.admin_email=user?.email
+    const { gear, person, year, ...newData } = carData;
+    newData.Features = { gear, person, year };
+    newData.admin_email = user?.email;
     console.log(newData);
     // post (create api)
     fetch("http://localhost:4000/cars", {
@@ -21,13 +24,20 @@ const AddCar = () => {
       },
       body: JSON.stringify(newData),
     })
-    .then(res=>res.json())
-    .then(data=>{
-      console.log(data)})
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
   return (
     <div>
       <div>
+        <div className="mb-6">
+          <ReusableBanner
+            title={title}
+            route_name={route_name}
+          ></ReusableBanner>
+        </div>
         <div className="py-6 ">
           <form onSubmit={handleSubmit} className="p-5 ">
             <div className="flex items-center flex-col mx-auto px-6 py-3 w-8/12 border border-blue-500 rounded-xl bg-gradient-to-r from-[#F5F7F6] to-[#fe930779] ">
@@ -93,13 +103,12 @@ const AddCar = () => {
               <div className=" grid  grid-cols-1 items-center gap-4 w-full">
                 <div className="flex  flex-col gap-1">
                   <span className="ml-2 mt-2 mb-1 text-base font-semibold ">
-                     Data 
+                    Data
                   </span>
                   <div className="w-full">
                     <input
                       type="date"
                       name="date"
-                      
                       className="w-full input-accent px-5 py-1 rounded-md "
                       required
                     />
