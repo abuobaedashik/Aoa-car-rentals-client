@@ -16,7 +16,7 @@ const Banner = () => {
           <h1 className="text-5xl mt-4 font-bold text-[#FE9307]">
             Dreams Today!{" "}
           </h1>
-          <p className="py-6 w-[540px] text-base text-[#ffffff] opacity-60">
+          <p className="py-6 w-11/12 md:w-[540px] text-base text-[#ffffff] opacity-60">
             Experience the ultimate in comfort, performance, and sophistication
             with our luxury car rentals. From sleek sedans and stylish coupes to
             spacious SUVs and elegant convertibles, we offer a range of premium
@@ -26,6 +26,16 @@ const Banner = () => {
             state-of-the-art technology, plush interiors, and powerful
             performance that redefine the driving experience.
           </p>
+          {/* <p className="py-6 w-[540px] text-base text-[#ffffff] opacity-60">
+            Experience the ultimate in comfort, performance, and sophistication
+            with our luxury car rentals. From sleek sedans and stylish coupes to
+            spacious SUVs and elegant convertibles, we offer a range of premium
+            vehicles to suit your preferences and lifestyle. Whether you're
+            planning a business trip, a weekend getaway, or a special occasion,
+            our cars are designed to make every journey unforgettable. Enjoy
+            state-of-the-art technology, plush interiors, and powerful
+            performance that redefine the driving experience.
+          </p> */}
           <button className="text-[#ffffff] text-lg font-semibold bg-[#FE9307] px-3 py-1 rounded-md border-none mt-4 hover:bg-[#fe9307b0]">
             Get Started
           </button>

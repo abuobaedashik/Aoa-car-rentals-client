@@ -6,6 +6,7 @@ import { IoIosHome, IoMdAddCircleOutline } from "react-icons/io";
 import { MdOutlineEventAvailable } from "react-icons/md";
 import { ImProfile } from "react-icons/im";
 import { PiBookmarks } from "react-icons/pi";
+import { IoMenu } from "react-icons/io5";
 
 const Navbar = () => {
   const { user, SignOut } = useContext(AuthContext);
@@ -103,24 +104,11 @@ const Navbar = () => {
   </>
   
   return (
-    <div className="navbar bg-[#ffffff] mx-auto mt-0 py-0">
-      <div className="navbar-start">
+    <div className="navbar justify-between bg-[#ffffff] mx-auto mt-0 py-0  w-full">
+      <div className="flex items-center justify-between ">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
+          <div tabIndex={0} role="button" className="btn text-xl btn-ghost lg:hidden">
+          <IoMenu />
           </div>
           <ul
             tabIndex={0}
@@ -133,15 +121,17 @@ const Navbar = () => {
          <div className="rounded-full">
            <img src={logo} className="w-20 h-20" alt="" />
          </div>
-         <div className="text-2xl font-bold text-[#FFA633]"><span className=" font-semibold text-[#131313]">Quick</span> Car Rentals</div>
+         <div className="text-xl md:text-2xl  font-bold text-[#FFA633]"><span className=" font-semibold text-[#131313]">Quick</span> Car Rentals</div>
            </div>
       </div>
-      <div className="navbar-center hidden lg:flex">
+      <div className="navbar-center   hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           {link}
         </ul>
       </div>
-       <div className="navbar-end">
+
+
+       <div className="flex items-center justify-between">
        {user ? (
         <div>
           <button onClick={handleSignOut}>SignOut</button>
@@ -153,7 +143,7 @@ const Navbar = () => {
                className={({ isActive }) =>
                 isActive
                   ? "rounded-md px-3 py-1 text-[#ffffff] bg-[#FFA633] font-bold"
-                  : "flex gap-1 items-center text-sm font-medium px-3"
+                  : "md:flex gap-1 items-center hidden text-sm font-medium px-3"
               }
             to={"/register"}>
               <button>Register</button>

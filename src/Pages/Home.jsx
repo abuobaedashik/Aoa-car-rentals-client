@@ -5,7 +5,9 @@ import WhyChooseUs from "../Component/WhyChooseUs";
 const Home = () => {
     return (
         <div>
-           <Banner></Banner>
+           <div className=" mx-auto">
+            <Banner></Banner>
+           </div>
            {/* why choose us section  */}
            <section className="mt-28 w-11/12 mx-auto">
              <WhyChooseUs></WhyChooseUs>

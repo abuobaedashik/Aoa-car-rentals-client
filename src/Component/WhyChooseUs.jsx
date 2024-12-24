@@ -10,7 +10,7 @@ const WhyChooseUs = () => {
       <div className="text-lg text-center mt-4">
         We are innovative and passionate about the work we do.
       </div>
-      <div className="mt-6 flex items-center justify-between gap-2 mb-8">
+      <div className="mt-6 flex md:flex-row flex-col items-center justify-between gap-7 md:gap-2 mb-8">
         <div className="flex flex-col gap-3 items-center justify-center bg-[#ffffff] p-6 rounded-lg hover:text-[#ffffff] hover:bg-[#131313]">
           <p className="icon bg-[#ffffff] text-[#131313]  text-4xl px-24 py-2 rounded-md ">
             <FaCar />
