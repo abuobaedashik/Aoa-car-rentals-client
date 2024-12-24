@@ -3,6 +3,7 @@ import { CiLocationOn } from "react-icons/ci";
 import { GiGears } from "react-icons/gi";
 import { MdAirlineSeatReclineNormal } from "react-icons/md";
 import { TbManualGearbox } from "react-icons/tb";
+import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 const AvailableCard = ({ car }) => {
@@ -22,8 +23,8 @@ const AvailableCard = ({ car }) => {
       <div className="card card-compact bg-[#ffffff]  shadow-sm object-cover transform transition-transform duration-100   hover:scale-[1.03]">
         <figure className="p-4">
           <img
-            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-            alt="Shoes"
+            src={image}
+            alt={model}
             className="h-[200px] mb-2 rounded-md "
           />
         </figure>
@@ -58,9 +59,9 @@ const AvailableCard = ({ car }) => {
             </div>
             
           </h2>
-          <div className=" w-full btn bg-[#131313e7] hover:bg-[#127384] justify-end text-center font-bold flex items-center justify-center text-[#ffffff]">
-            <button className="text-center">Book Now</button>
-          </div>
+          <Link to={`details/${car._id}`} className=" w-full btn bg-[#131313e7] hover:bg-[#127384] justify-end text-center font-bold flex items-center justify-center text-[#ffffff]">
+            <button  className="text-center">Book Now</button>
+          </Link>
         </div>
       </div>
     </div>
