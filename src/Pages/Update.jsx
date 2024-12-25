@@ -26,7 +26,7 @@ const Update = ({title,route_name}) => {
     e.preventDefault();
     const updateData = new FormData(e.target);
     const updateCarData = Object.fromEntries(updateData.entries());
-    console.log(updateCarData);
+    // console.log(updateCarData);
     // const {min,max,currency, ...newJob} = jobData;
     const { gear,person,year,...finalData } = updateCarData;
     finalData.Features = { gear,person, year };
