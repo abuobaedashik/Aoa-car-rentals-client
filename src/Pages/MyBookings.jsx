@@ -5,7 +5,9 @@ import { Link, NavLink, useLoaderData } from "react-router-dom";
 import axios from "axios";
 import AuthContext from "../Context/Authcontext/AuthContext";
 import { MdOutlineDelete, MdOutlineUpdate } from "react-icons/md";
-
+import { BsTrashFill } from "react-icons/bs";
+import { SlCalender } from "react-icons/sl";
+import Swal from "sweetalert2";
 
 const MyBookings = ({ title, route_name }) => {
   title = <>My Bookings</>;
@@ -21,6 +23,56 @@ const MyBookings = ({ title, route_name }) => {
         setmyBooked(res.data);
       });
   }, [user?.email]);
+   const handleDelete = (id) => {
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-success",
+          cancelButton: "btn btn-danger",
+        },
+        buttonsStyling: false,
+      });
+      swalWithBootstrapButtons
+        .fire({
+          title: "Are you sure you want to cancel this booking?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Yes, delete it!",
+          cancelButtonText: "No, cancel!",
+          reverseButtons: true,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            // console.log("delete successfull");
+            fetch(`http://localhost:4000/car_booked/${id}`, {
+              method: "DELETE",
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.deletedCount) {
+                  console.log(id);
+                  swalWithBootstrapButtons.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success",
+                  });
+  
+                  // Clear data from ui afert delete
+                  const remainData = myBooked.filter((total) => total._id !== id);
+                  setmyBooked(remainData);
+                }
+              });
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire({
+              title: "Cancelled",
+              text: "Your imaginary file is safe :)",
+              icon: "error",
+            });
+          }
+        });
+    };
   return (
     <div>
       <div className="mb-6">
@@ -62,24 +114,24 @@ const MyBookings = ({ title, route_name }) => {
                       </div>
                     </td>
                     <td>{car?.model}</td>
-                    <td>{new Date(car?.date).toLocaleDateString()} {new Date(car?.date).toLocaleTimeString()}</td>
-                    <td>{car?.rental_price}</td>
                     <td>
-                     {car?.user_email ? <>Booked</> : <>Not Booked</>}
+                      {new Date(car?.date).toLocaleDateString()}{" "}
+                      {new Date(car?.date).toLocaleTimeString()}
                     </td>
-                    <td className="flex items-center justify-center gap-2 text-base py-4 font-extrabold">
-                    {/* to={`/update/${car?._id}`} */}
-                      <Link >
-                        <button className="bg-[#fe9307d1] rounded-md text-[#766956] px-3 py-1">
-                          <MdOutlineUpdate />
+                    <td>{car?.rental_price}</td>
+                    <td>{car?.user_email ? <>Booked</> : <>Not Booked</>}</td>
+                    <td className="flex items-center justify-start gap-2 text-base py-4 font-extrabold">
+                      {/* to={`/update/${car?._id}`} */}
+                      <Link>
+                        <button className="bg-[#0000ff] px-3 py-1 rounded-md text-[#ffffff] text-sm flex items-center gap-1">
+                          <SlCalender/>
+                          <div className="text-sm">Modify Date</div>
                         </button>
                       </Link>
-                      {/* onClick={() => handleDelete(car?._id)} */}
-                      <button
-                        
-                        className="bg-[#fe9307d1] px-3 py-1 rounded-md text-[#766956]"
-                      >
-                        <MdOutlineDelete />
+                     
+                      <button  onClick={() => handleDelete(car?._id)} className="bg-[#FF0000] px-3 py-1 rounded-md text-[#ffffff] text-sm flex items-center gap-1">
+                        <BsTrashFill />
+                        <div className="text-sm">Cancel</div>
                       </button>
                     </td>
                   </tr>
