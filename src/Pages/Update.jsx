@@ -261,19 +261,33 @@ const Update = ({title,route_name}) => {
                 </div>
               </div> */}
               {/*location */}
-              <div className=" grid grid-cols-1 items-center gap-2 w-full">
-                <div className="flex  flex-col gap-1">
-                  <span className="my-2 ">Location</span>
-                  <input
-                    type="text"
+                <div className="flex  flex-col gap-1 w-full">
+                  <span className="ml-2 mt-2 mb-1 text-base font-semibold ">
+                    Location
+                  </span>
+                  <select
                     name="location"
                     defaultValue={location}
-                    placeholder="Enter Location"
-                    className="w-full input-accent px-5 py-1 rounded-md"
-                    required
-                  />
+                    className="w-full input-accent px-5 py-1 rounded-md "
+                  >
+                    <option disabled>choose location</option>
+                    <option>Motijheel</option>
+                    <option>Kamalapur</option>
+                    <option>Paltan</option>
+                    <option>Mohammadpur</option>
+                    <option>Dhanmondi</option>
+                    <option>Mirpur</option>
+                    <option>Gulshan</option>
+                    <option>Banani</option>
+                    <option>Uttara</option>
+                    <option>Sadarghat</option>
+                    <option>Farmgate</option>
+                    <option>Hazrat Shahjalal International Airport</option>
+                    <option>Kallyanpur</option>
+                    <option>Shyamoli</option>
+                    <option>Badda</option>
+                  </select>
                 </div>
-              </div>
 
               {/* button */}
               <div className=" grid grid-cols-1 items-center gap-2 w-full">

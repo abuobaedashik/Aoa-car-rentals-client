@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import ReusableBanner from "../Component/Shared/ReusableBanner";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { IoLocationOutline } from "react-icons/io5";
 import { MdAirlineSeatReclineNormal, MdEventAvailable } from "react-icons/md";
 import { TbManualGearbox } from "react-icons/tb";
 import { GiGears } from "react-icons/gi";
+import AuthContext from "../Context/Authcontext/AuthContext";
+import Swal from "sweetalert2";
 
 const Details = ({ title, route_name }) => {
   title = <>Car Details</>;
   const singleData = useLoaderData();
   route_name = <>details/{singleData?.model}</>;
   console.log(singleData);
+  const navigate =useNavigate()
+  const {user}=useContext(AuthContext)
   const {
     availability,
     date,
@@ -22,6 +26,36 @@ const Details = ({ title, route_name }) => {
     reg_no,
     rental_price,
   } = singleData;
+  const handleBooked =e=>{
+    e.preventDefault();
+    const bookingCar = new FormData(e.target);
+    const bookedList = Object.fromEntries(bookingCar.entries());
+    // console.log(updateCarData);
+    // const {min,max,currency, ...newJob} = jobData;
+    // finalData.Features = { gear,person, year };
+    bookedList.car_id=singleData?._id
+    bookedList.user_email=user?.email
+    console.log('booked car data',bookedList)
+    fetch("http://localhost:4000/car_booked", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(bookedList),
+    })
+    .then((res) => res.json())
+    .then((data) =>{
+      if (data.insertedId) {
+        Swal.fire({
+          title: "Car Booked Successful",
+          icon: "success",
+          draggable: true
+        })
+      }
+      // navigate('/my-bookings')
+    });
+    
+  }
   return (
     <div>
       <div className="mb-0">
@@ -55,9 +89,9 @@ const Details = ({ title, route_name }) => {
         </div>
       </div>
       {/* details image and description and booking form */}
-      <div className="details w-11/12 mx-auto py-10 flex flex-col md:flex-row items-start justify-between md:gap-2 gap-6 ">
+      <div className="details w-11/12 mx-auto py-10 pt-24 flex flex-col md:flex-row items-start justify-between md:gap-2 gap-6 ">
         {/* left side */}
-        <div className="left md:w-[60%] w-full border-2 border-green-700">
+        <div className="left md:w-[60%] w-full">
           {/* image */}
           <div className="p-4 pt-5 rounded-md pb-4 bg-[#ffffff]">
             <img
@@ -67,7 +101,7 @@ const Details = ({ title, route_name }) => {
             />
           </div>
           {/* description */}
-          <div className="p-4 pt-5 mt-6 px-4 py-6 text-[#787878] rounded-md pb-4 bg-[#ffffff]">
+          <div className="p-4 pt-5 mt-6 h-[244px] overflow-hidden px-4 py-6 text-[#787878] rounded-md pb-4 bg-[#ffffff]">
             <div className="text-2xl pb-3 my-3 border-b border-[#1313136d] font-bold text-[#131313]">
               Description
             </div>
@@ -83,35 +117,35 @@ const Details = ({ title, route_name }) => {
               <div className="collapse mt-3 collapse-arrow bg-base-200">
                 <input type="radio" name="my-accordion-2" defaultChecked />
                 <div className="collapse-title text-base font-medium">
-                  Click to open this one and close others
+                Is it possible to rent a car with a driver?
                 </div>
                 <div className="collapse-content">
-                  <p>hello</p>
+                  <p>Yes, we provide cars with experienced drivers for your convenience.</p>
                 </div>
               </div>
               <div className="collapse mt-3 collapse-arrow bg-base-200">
                 <input type="radio" name="my-accordion-2" />
                 <div className="collapse-title text-base font-medium">
-                  Click to open this one and close others
+                 How can I book a car rental?
                 </div>
                 <div className="collapse-content">
-                  <p>hello</p>
+                  <p>You can book a car rental through our website, by calling our customer service hotline, or by visiting our office directly.</p>
                 </div>
               </div>
               <div className="collapse mt-3 collapse-arrow bg-base-200">
                 <input type="radio" name="my-accordion-2" />
                 <div className="collapse-title text-base font-medium">
-                  Click to open this one and close others
+                Are your services available outside Dhaka?
                 </div>
                 <div className="collapse-content">
-                  <p>hello</p>
+                  <p>Yes, we offer car rentals for both within Dhaka city and inter-district travel.</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
         {/* rigth side */}
-        <div className="right md:w-[36%] w-full border-2 border-blue-500">
+        <div className="right md:w-[36%] w-full ">
           {/* Pricing Details */}
           <div className="price bg-[#ffffff] mb-6 py-5 px-3 rounded-md">
             <div className="text-2xl pb-3 my-3 border-b border-[#1313136d] font-bold text-[#131313]">
@@ -130,7 +164,7 @@ const Details = ({ title, route_name }) => {
               Specifications
             </div>
             <div className="text-sm px-4 py-3 my-3 bg-[#f2f7f6] flex items-center justify-between text-[#787878]">
-              <div className="flex items-center gap-16 px-5 rounded-md text-[#828282] justify-around text-base">
+              <div className="flex items-center gap-1 md:gap-16 px-2 md:px-5 rounded-md text-[#828282] justify-around text-base">
                 <p className="icon border-3 border-red-600 flex items-center px-2  rounded-md bg-[#f2f7f6]">
                   <p>
                     <TbManualGearbox />
@@ -154,40 +188,110 @@ const Details = ({ title, route_name }) => {
             </div>
           </div>
           {/* booking form */}
-          <div className="price bg-[#ffffff] mb-6 mt-8 py-5 px-3 rounded-md">
-            <div className="text-2xl pb-3 my-3 border-b border-[#1313136d] font-bold text-[#131313]">
+          <div className="price bg-[#ffffff] pb-2 rounded-md mt-8 py-5 px-3">
+            <div className="text-2xl pb-8 my-3 border-b border-[#1313136d] font-bold text-[#131313]">
               Booking Form
             </div>
-             <form>
-                {/*Pickup Location */}
-                {/* Dropoff Location */}
+            <form onSubmit={handleBooked}>
+              {/*Pickup Location */}
+              <div className="flex bg-[#f2f7f6] mt-6  flex-col gap-1">
+                <span className="ml-2 mt-2 mb-1 text-base font-semibold ">
+                  Pickup Location
+                </span>
+                <select
+                  name="pickup"
+                  defaultValue={location}
+                  className="w-full input-accent bg-[#f2f7f6] px-5 py-1 rounded-md "
+                >
+                  <option disabled>choose location</option>
+                  <option>Motijheel</option>
+                  <option>Kamalapur</option>
+                  <option>Paltan</option>
+                  <option>Mohammadpur</option>
+                  <option>Dhanmondi</option>
+                  <option>Mirpur</option>
+                  <option>Gulshan</option>
+                  <option>Banani</option>
+                  <option>Uttara</option>
+                  <option>Sadarghat</option>
+                  <option>Farmgate</option>
+                  <option>Hazrat Shahjalal International Airport</option>
+                  <option>Kallyanpur</option>
+                  <option>Shyamoli</option>
+                  <option>Badda</option>
+                </select>
+              </div>
+              {/* Dropoff Location */}
+              <div className="flex bg-[#f2f7f6] mt-6 flex-col gap-1">
+                <span className="ml-2 mt-2 mb-1 text-base font-semibold ">
+                  Dropoff Location
+                </span>
+                <select
+                  name="dropoff"
+                  className="w-full input-accent bg-[#f2f7f6] px-5 py-1 rounded-md "
+                >
+                  <option disabled>choose location</option>
+                  <option>Motijheel</option>
+                  <option>Kamalapur</option>
+                  <option>Paltan</option>
+                  <option>Mohammadpur</option>
+                  <option>Dhanmondi</option>
+                  <option>Mirpur</option>
+                  <option>Gulshan</option>
+                  <option>Banani</option>
+                  <option>Uttara</option>
+                  <option>Sadarghat</option>
+                  <option>Farmgate</option>
+                  <option>Hazrat Shahjalal International Airport</option>
+                  <option>Kallyanpur</option>
+                  <option>Shyamoli</option>
+                  <option>Badda</option>
+                </select>
+              </div>
+              {/* Pickup Date */}
+              <div className=" grid bg-[#f2f7f6] mt-6 grid-cols-1 items-center gap-4 w-full">
                 <div className="flex bg-[#f2f7f6]  flex-col gap-1">
                   <span className="ml-2 mt-2 mb-1 text-base font-semibold ">
-                  Dropoff Location
+                    Booking Data
                   </span>
-                  <select
-                    name="gear"
-                    className="w-full input-accent bg-[#f2f7f6] px-5 py-1 rounded-md "
-                  >
-                    <option disabled>choose location</option>
-                    <option>Motijheel</option>
-                    <option>Kamalapur</option>
-                    <option>Paltan</option>
-                    <option>Mohammadpur</option>
-                    <option>Dhanmondi</option>
-                    <option>Mirpur</option>
-                    <option>Gulshan</option>
-                    <option>Banani</option>
-                    <option>Uttara</option>
-                    <option>Sadarghat</option>
-                    <option>Farmgate</option>
-                    <option>Hazrat Shahjalal International Airport</option>
-                    <option>Kallyanpur</option>
-                    <option>Shyamoli</option>
-                    <option>Badda</option>
-                  </select>
+                  <div className="py-3 px-2 w-10/12">
+                    <input
+                      type="datetime-local"
+                      name="date"
+                      className="w-full input-accent px-5 py-1 rounded-md "
+                      required
+                    />
+                  </div>
                 </div>
-             </form>
+              </div>
+              {/* coupon */}
+              <div className="price bg-[#ffffff] mb-6 py-5 px-3 rounded-md">
+                <div className="text-xl pb-3 my-3 font-bold text-[#131313]">
+                  Use Coupon
+                </div>
+                <div className="coupon">
+                  <input
+                    type="text"
+                    placeholder="Enter Valid Coupon Code "
+                    className="input input-bordered input-primary w-full max-w-xs"
+                  />
+                </div>
+                <p className="flex items-center justify-start gap-2">
+                  <input
+                    type="checkbox"
+                    name="usecoupon"
+                    placeholder="use coupon code"
+                    id=""
+                  />
+                  Use coupon code{" "}
+                </p>
+              </div>
+              <div className="mt-3">
+                <button className=" bg-[#D2B48C] w-full input-accent px-5 py-2 rounded-lg hover:bg-[#FF0000] text-[#ffffff] my-4 mt-4">
+                  Book Now
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
