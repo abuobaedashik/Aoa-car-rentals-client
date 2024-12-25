@@ -89,8 +89,8 @@ const Mycars = ({ title, route_name }) => {
               </NavLink>
             </div>
           ) : (
-            <table className="table table-xs">
-              <thead className="px-2 py-1 bg-[#fe930779] text-[#ffffff] text-base ">
+            <table className="table table-xs border border-[#13131374]">
+              <thead className="px-2 py-2 bg-[#E00600] text-[#ffffff] text-sm  ">
                 <tr>
                   <th>SL No.</th>
                   <th>Image</th>
@@ -102,9 +102,9 @@ const Mycars = ({ title, route_name }) => {
                 </tr>
               </thead>
               <tbody className="text-base bg-[#ffffff]">
-                {cars?.map((car) => (
-                  <tr key={car._id} className="">
-                    <th>1</th>
+                {cars?.map((car, index) => (
+                  <tr key={car._id} className="border border-[#13131374]">
+                    <th>{index + 1}</th>
                     <td>
                       <div className="avatar">
                         <div className="rounded-sm h-12 w-12">
@@ -121,13 +121,13 @@ const Mycars = ({ title, route_name }) => {
                     <td>{car?.date}</td>
                     <td className="flex items-center justify-center gap-2 text-base py-4 font-extrabold">
                       <Link to={`/update/${car?._id}`}>
-                        <button className="bg-[#fe9307d1] rounded-md text-[#766956] px-3 py-1">
+                        <button className="bg-[#0000ee] mt-[1px] rounded-md text-[#ffffff] px-3 py-1">
                           <MdOutlineUpdate />
                         </button>
                       </Link>
                       <button
                         onClick={() => handleDelete(car?._id)}
-                        className="bg-[#fe9307d1] px-3 py-1 rounded-md text-[#766956]"
+                        className="bg-[#ff0000] px-3 py-1 rounded-md text-[#ffffff]"
                       >
                         <MdOutlineDelete />
                       </button>
@@ -135,17 +135,6 @@ const Mycars = ({ title, route_name }) => {
                   </tr>
                 ))}
               </tbody>
-              <tfoot className="text-xs bg-[#fe930779]">
-                <tr>
-                  <th>SL No.</th>
-                  <th>Image</th>
-                  <th>Model</th>
-                  <th>Rental Price</th>
-                  <th>Availablity</th>
-                  <th>Date</th>
-                  <th>Action</th>
-                </tr>
-              </tfoot>
             </table>
           )}
         </div>
