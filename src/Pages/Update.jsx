@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import AuthContext from "../Context/Authcontext/AuthContext";
 import Swal from "sweetalert2";
 import ReusableBanner from "../Component/Shared/ReusableBanner";
+import { useContext } from "react";
 
 const Update = ({title,route_name}) => {
     const data = useLoaderData();

@@ -1,6 +1,8 @@
 import Banner from "../Component/Banner";
 import RecentList from "../Component/RecentList";
 import WhyChooseUs from "../Component/WhyChooseUs";
+import 'animate.css';
+
 
 const Home = () => {
     return (
