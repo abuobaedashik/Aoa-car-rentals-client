@@ -7,16 +7,31 @@ import { MdOutlineEventAvailable } from "react-icons/md";
 import { ImProfile } from "react-icons/im";
 import { PiBookmarks } from "react-icons/pi";
 import { IoMenu } from "react-icons/io5";
+import Swal from "sweetalert2";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Navbar = () => {
   const { user, SignOut } = useContext(AuthContext);
   const handleSignOut =()=>{
-     SignOut()
+    SignOut()
      .then(()=>{
-      console.log('Logout successful');
+      // console.log('Logout successful');
+      Swal.fire({
+        title: "Logout Successful",
+        icon: "success"
+      });
      })
      .catch(error=>{
-       console.log(error.message);
+      //  console.log(error.message);
+      toast.error(error.message, {
+        position: "top-center", 
+        autoClose: 3000, 
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored", 
+      });
      })
   }
 
@@ -165,6 +180,7 @@ const Navbar = () => {
         </div>
       )}
        </div>
+       <ToastContainer></ToastContainer>
     </div>
   );
 };

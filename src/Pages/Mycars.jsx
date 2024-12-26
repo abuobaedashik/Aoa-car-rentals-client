@@ -15,8 +15,8 @@ const Mycars = ({ title, route_name }) => {
   route_name = <>my-cars</>;
   const [cars, setcars] = useState([]);
   useEffect(() => {
-    axios.get(`http://localhost:4000/cars?email=${user?.email}`).then((res) => {
-      console.log(res.data);
+    axios.get(`https://rent-my-ride-server.vercel.app/cars?email=${user?.email}`).then((res) => {
+      // console.log(res.data);
       setcars(res.data);
     });
   }, [user.email]);
@@ -42,13 +42,13 @@ const Mycars = ({ title, route_name }) => {
       .then((result) => {
         if (result.isConfirmed) {
           // console.log("delete successfull");
-          fetch(`http://localhost:4000/cars/${id}`, {
+          fetch(`https://rent-my-ride-server.vercel.app/cars/${id}`, {
             method: "DELETE",
           })
             .then((res) => res.json())
             .then((data) => {
               if (data.deletedCount) {
-                console.log(id);
+                // console.log(id);
                 swalWithBootstrapButtons.fire({
                   title: "Deleted!",
                   text: "Your file has been deleted.",

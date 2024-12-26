@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import AuthContext from "../Context/Authcontext/AuthContext";
 import ReusableBanner from "../Component/Shared/ReusableBanner";
+import Swal from "sweetalert2";
 
 const AddCar = ({title,route_name}) => {
   title = <>Add Car</>
@@ -10,14 +11,14 @@ const AddCar = ({title,route_name}) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const carData = Object.fromEntries(formData.entries());
-    console.log(carData);
+    // console.log(carData);
     // const {min,max,currency, ...newJob} = jobData;
     const { gear, person, year, ...newData } = carData;
     newData.Features = { gear, person, year };
     newData.admin_email = user?.email;
-    console.log(newData);
+    // console.log(newData);
     // post (create api)
-    fetch("http://localhost:4000/cars", {
+    fetch("https://rent-my-ride-server.vercel.app/cars", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +27,15 @@ const AddCar = ({title,route_name}) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data)
+        if (data.insertedId) {
+          Swal.fire({
+              title: "Thanks",
+              text: "Car Added Successfull !",
+              icon: "success"
+            });
+          }
+        
       });
   };
   return (

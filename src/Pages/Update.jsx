@@ -9,7 +9,7 @@ const Update = ({title,route_name}) => {
     title = <>Update Added Cars Data</>
     route_name=<>my-cars/update</>
   const {user}=useContext(AuthContext)
-  console.log(data);
+  // console.log(data);
   const {
     availability,
     date,
@@ -31,9 +31,9 @@ const Update = ({title,route_name}) => {
     const { gear,person,year,...finalData } = updateCarData;
     finalData.Features = { gear,person, year };
     finalData.admin_email=user?.email
-    console.log(finalData);
+    // console.log(finalData);
 
-    fetch(`http://localhost:4000/update/${data._id}`,{
+    fetch(`https://rent-my-ride-server.vercel.app/update/${data._id}`,{
         method:'PUT',
         headers:{
           'content-type':'application/json'},
@@ -41,7 +41,7 @@ const Update = ({title,route_name}) => {
       })
       .then(res=>res.json())
      .then(data=>{
-        console.log(data);
+        // console.log(data);
        if (data.modifiedCount >0) {
         Swal.fire({
             title: "Thanks",

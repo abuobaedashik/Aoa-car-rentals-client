@@ -35,8 +35,8 @@ import Details from "../Pages/Details";
         {
             path:"/available",
             element:<Available></Available>,
-            loader:()=>fetch('http://localhost:4000/cars')
-        },
+            loader:()=>fetch('https://rent-my-ride-server.vercel.app/cars')
+        },     
         {
             path:"/add-car",
             element:<PrivateRoute><AddCar/></PrivateRoute>
@@ -52,12 +52,12 @@ import Details from "../Pages/Details";
         {
             path:"/update/:id",
             element:<Update></Update>,
-            loader:({params})=>fetch(`http://localhost:4000/update/${params.id}`)
+            loader:({params})=>fetch(`https://rent-my-ride-server.vercel.app/update/${params.id}`)
         },
         {
             path:"available/details/:id",
             element:<Details></Details>,
-            loader:({params})=>fetch(`http://localhost:4000/cars/${params.id}`)
+            loader:({params})=>fetch(`https://rent-my-ride-server.vercel.app/cars/${params.id}`)
         },
          
          {

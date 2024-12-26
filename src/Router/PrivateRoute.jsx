@@ -5,7 +5,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 const PrivateRoute = ({children}) => {
     const {user, loader}=useContext(AuthContext)
     const location =useLocation()
-    console.log(location);
+    // console.log(location);
     if (loader) {
         return <div className='flex items-center justify-center my-32'>
             <span className="loading w-10 h-10 loading-spinner text-neutral"></span>

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { CiLocationOn } from "react-icons/ci";
 import { GiGears } from "react-icons/gi";
@@ -9,18 +10,14 @@ import { Link } from "react-router-dom";
 const AvailableCard = ({ car }) => {
   // console.log(car);
   const { 
-    availability,
-    date,
-    description,
     Features,
     image,
     location,
     model,
-    reg_no,
     rental_price,}=car;
   return (
     <div>
-      <div className="card card-compact bg-[#ffffff]  shadow-sm object-cover transform transition-transform duration-100 hover:bg-[#787A7A]   hover:scale-[1.03]">
+      <div className="card card-compact bg-[#ffffff]  shadow-sm object-cover transform transition-transform duration-100 hover:bg-[#787a7ab1]   hover:scale-[1.03]">
         <figure className="p-4">
           <img
             src={image}

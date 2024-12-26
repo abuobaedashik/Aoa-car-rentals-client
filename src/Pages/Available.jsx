@@ -11,54 +11,52 @@ const Available = ({ title, route_name }) => {
   title = <>Available Car</>;
   route_name = <>available</>;
   const allCar = useLoaderData();
-  const [sortOrder, setSortOrder] = useState("asc");  // For price sorting
-  const [dateOrder, setDateOrder] = useState("desc"); // For date sorting
-  const [isGridView, setIsGridView] = useState(true); // For view toggle
-  
+  const [sortOrder, setSortOrder] = useState(""); 
+  const [dateOrder, setDateOrder] = useState(""); 
+  const [isGridView, setIsGridView] = useState(true);
 
   // Filter available cars
   const availableCar = allCar.filter(
     (item) => item.availability === "Available"
   );
+  const getSortedCars = () => {
+    let cars = [...availableCar];
 
-  // Sort the available cars based on price and date
-  const sortedCars = availableCar.sort((a, b) => {
     // Sort by price
-    if (sortOrder === "asc") {
-      return a.rental_price - b.rental_price;
-    } else if (sortOrder === "desc") {
-      return b.rental_price - a.rental_price;
-    }
-
-    // Ensure the date is in the correct format
-    const dateA = new Date(a.date);  // Convert date string to Date object
-    const dateB = new Date(b.date);  // Convert date string to Date object
-
-    // Debugging: Check if the date is being parsed correctly
-    console.log("Date A:", dateA);
-    console.log("Date B:", dateB);
-
-    if (isNaN(dateA) || isNaN(dateB)) {
-      console.error("Invalid date format:", a.date, b.date);
-      return 0; // If date parsing fails, do not perform sorting
+    if (sortOrder) {
+      cars = cars.sort((a, b) => {
+        return sortOrder === "asc"
+          ? a.rental_price - b.rental_price
+          : b.rental_price - a.rental_price;
+      });
     }
 
     // Sort by date
-    if (dateOrder === "desc") {
-      return dateB - dateA;  // Newest first
-    } else {
-      return dateA - dateB;  // Oldest first
+    if (dateOrder) {
+      cars = cars.sort((a, b) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+
+        if (isNaN(dateA) || isNaN(dateB)) return 0; // If date parsing fails
+        return dateOrder === "desc" ? dateB - dateA : dateA - dateB;
+      });
     }
-  });
+
+    return cars;
+  };
+
+  const sortedCars = getSortedCars(); 
 
   // Handle price sort change
   const handlePriceSortChange = (order) => {
     setSortOrder(order);
+    setDateOrder("");
   };
 
   // Handle date sort change
   const handleDateSortChange = (order) => {
     setDateOrder(order);
+    setSortOrder(""); 
   };
 
   // Function to toggle view mode
@@ -88,20 +86,45 @@ const Available = ({ title, route_name }) => {
                 className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
               >
                 <li>
-                  <a onClick={() => handlePriceSortChange("asc")}>Lowest Price</a>
+                  <a onClick={() => handlePriceSortChange("asc")}>
+                    Lowest Price
+                  </a>
                 </li>
                 <li>
-                  <a onClick={() => handlePriceSortChange("desc")}>Highest Price</a>
+                  <a onClick={() => handlePriceSortChange("desc")}>
+                    Highest Price
+                  </a>
                 </li>
                 <li>
-                  <a onClick={() => handleDateSortChange("desc")}>Newest First</a>
+                  <a onClick={() => handleDateSortChange("desc")}>
+                    Newest First
+                  </a>
                 </li>
                 <li>
-                  <a onClick={() => handleDateSortChange("asc")}>Oldest First</a>
+                  <a onClick={() => handleDateSortChange("asc")}>
+                    Oldest First
+                  </a>
                 </li>
               </ul>
             </div>
           </p>
+          {/* search  */}
+          <label className="input input-bordered flex items-center gap-2">
+            <input type="text" className="grow" placeholder="Search" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              className="h-4 w-4 opacity-70"
+            >
+              <path
+                fillRule="evenodd"
+                d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </label>
+
           {/* Toggle button for grid/list view */}
           <p className="flex items-center justify-between gap-4">
             <button
@@ -124,7 +147,7 @@ const Available = ({ title, route_name }) => {
         </div>
       </div>
 
-      {/* Conditionally render grid or list view */}
+      {/* Conditionally render grid and list view with button */}
       <div
         className={`${
           isGridView

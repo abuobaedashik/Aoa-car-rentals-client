@@ -24,7 +24,7 @@ const MyBookings = ({ title, route_name }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/car_booked?email=${user?.email}`)
+      .get(`https://rent-my-ride-server.vercel.app/car_booked?email=${user?.email}`)
       .then((res) => setMyBooked(res.data));
   }, [user?.email]);
 
@@ -39,7 +39,7 @@ const MyBookings = ({ title, route_name }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:4000/car_booked/${id}`, {
+        fetch(`https://rent-my-ride-server.vercel.app/car_booked/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -60,7 +60,7 @@ const MyBookings = ({ title, route_name }) => {
 
   const handleModalSubmit = (newDate) => {
     axios
-      .patch(`http://localhost:4000/car_booked/${currentBookingId}`, { date: newDate })
+      .patch(`https://rent-my-ride-server.vercel.app/car_booked/${currentBookingId}`, { date: newDate })
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           Swal.fire("Success!", "Booking date updated successfully.", "success");

@@ -33,23 +33,45 @@ const Register = () => {
         CreateUser(email,password)
         .then(result=>{
             const user =result.user
-            console.log(user);
+            // console.log(user);
+            toast.error("User Create Successfull", {
+              position: "top-center", 
+              autoClose: 3000, 
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              theme: "colored", 
+            });
         })
         .catch(error=>{
             const Errormessage =error.message
-            console.log(Errormessage);
+            // console.log(Errormessage);
+            toast.error(Errormessage, {
+              position: "top-center", 
+              autoClose: 3000, 
+              draggable: true,
+              theme: "colored", 
+            });
         })
     }
 
       const handleGoogleSignIn =()=>{
         googleSignIn()
         .then((result)=>{
-          console.log(result.user);
+          // console.log(result.user);
+          toast.error("Create User with Google Successful", {
+            position: "top-center", 
+            theme: "colored"
+          });
           navigate(location?.state ? location?.state : "/");
         })
         .catch((error)=>{
          const errorMessage = error.message;
-         console.log(errorMessage);
+        //  console.log(errorMessage);
+        toast.error(errorMessage, {
+          position: "top-center", 
+          theme: "colored"
+        });
         })
       }
     return (

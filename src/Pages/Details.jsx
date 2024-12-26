@@ -12,7 +12,7 @@ const Details = ({ title, route_name }) => {
   title = <>Car Details</>;
   const singleData = useLoaderData();
   route_name = <>details/{singleData?.model}</>;
-  console.log(singleData);
+  // console.log(singleData);
   const navigate =useNavigate()
   const {user}=useContext(AuthContext)
   const {
@@ -35,8 +35,8 @@ const Details = ({ title, route_name }) => {
     // finalData.Features = { gear,person, year };
     bookedList.car_id=singleData?._id
     bookedList.user_email=user?.email
-    console.log('booked car data',bookedList)
-    fetch("http://localhost:4000/car_booked", {
+    // console.log('booked car data',bookedList)
+    fetch("https://rent-my-ride-server.vercel.app/car_booked", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,7 +52,7 @@ const Details = ({ title, route_name }) => {
           draggable: true
         })
       }
-      // navigate('/my-bookings')
+      navigate('/my-bookings')
     });
     
   }

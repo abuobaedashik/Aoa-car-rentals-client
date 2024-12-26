@@ -2,27 +2,44 @@ import Lottie from "lottie-react";
 import lottielogin from '../assets/Lottie/Login.json'
 import React, { useContext } from "react";
 import AuthContext from "../Context/Authcontext/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import googlelogo from '../assets/Logo/googleicon.png'
+import { toast } from "react-toastify";
 
 const Login = () => {
     const {LogInUser,googleSignIn}=useContext(AuthContext)
     const handleLogin =event =>{
         event.preventDefault();
+        // const navigate=useNavigate()
         const form =event.target
         const email =form.email.value
         const password =form.password.value
         const userData ={email,password}
-        console.log(userData);
+        // console.log(userData);
         // login
         LogInUser(email,password)
         .then(result=>{
             const user =result.user
-            console.log(user);
+            // console.log(user);
+             toast.success("User Login Successful", {
+                    position: "top-center", 
+                    autoClose: 3000, 
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored", 
+                  });
         })
         .catch(error=>{
             const Errormessage =error.message
-            console.log(Errormessage);
+            // console.log(Errormessage);
+             toast.error(Errormessage , {
+                    position: "top-center", 
+                    autoClose: 3000, 
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored", 
+                  })
         })
         
     }
