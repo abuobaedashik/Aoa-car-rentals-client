@@ -37,7 +37,7 @@ const Available = ({ title, route_name }) => {
         const dateA = new Date(a.date);
         const dateB = new Date(b.date);
 
-        if (isNaN(dateA) || isNaN(dateB)) return 0; // If date parsing fails
+        if (isNaN(dateA) || isNaN(dateB)) return 0; 
         return dateOrder === "desc" ? dateB - dateA : dateA - dateB;
       });
     }

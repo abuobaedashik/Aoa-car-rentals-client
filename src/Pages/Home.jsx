@@ -1,4 +1,5 @@
 import Banner from "../Component/Banner";
+import Extrasec from "../Component/Extrasec";
 import RecentList from "../Component/RecentList";
 import WhyChooseUs from "../Component/WhyChooseUs";
 import 'animate.css';
@@ -17,6 +18,10 @@ const Home = () => {
            {/* recent lesting section */}
            <section className="mt-28 w-11/12 mx-auto">
              <RecentList></RecentList>
+           </section>
+           {/* extrasection */}
+           <section className="mt-28 w-11/12 mx-auto">
+               <Extrasec></Extrasec>
            </section>
         </div>
     );
