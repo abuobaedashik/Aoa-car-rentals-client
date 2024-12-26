@@ -1,12 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../Context/Authcontext/AuthContext";
 import ReusableBanner from "../Component/Shared/ReusableBanner";
 import Swal from "sweetalert2";
 
-const AddCar = ({title,route_name}) => {
-  title = <>Add Car</>
-  route_name=<>add-car</>
+const AddCar = ({ title, route_name }) => {
+  title = <>Add Car</>;
+  route_name = <>add-car</>;
   const { user } = useContext(AuthContext);
+  const [today, setToday] = useState("");
+  useEffect(() => {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, "0"); // Add leading zero to month
+    const day = String(currentDate.getDate()).padStart(2, "0"); // Add leading zero to day
+    setToday(`${year}-${month}-${day}`); // Set formatted date (YYYY-MM-DD)
+  }, [])
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -18,6 +26,7 @@ const AddCar = ({title,route_name}) => {
     newData.admin_email = user?.email;
     // console.log(newData);
     // post (create api)
+  
     fetch("https://rent-my-ride-server.vercel.app/cars", {
       method: "POST",
       headers: {
@@ -30,12 +39,11 @@ const AddCar = ({title,route_name}) => {
         // console.log(data)
         if (data.insertedId) {
           Swal.fire({
-              title: "Thanks",
-              text: "Car Added Successfull !",
-              icon: "success"
-            });
-          }
-        
+            title: "Thanks",
+            text: "Car Added Successfull !",
+            icon: "success",
+          });
+        }
       });
   };
   return (
@@ -109,17 +117,18 @@ const AddCar = ({title,route_name}) => {
                 </div>
               </div>
               {/* date */}
-              <div className=" grid  grid-cols-1 items-center gap-4 w-full">
-                <div className="flex  flex-col gap-1">
-                  <span className="ml-2 mt-2 mb-1 text-base font-semibold ">
+              <div className="grid grid-cols-1 items-center gap-4 w-full">
+                <div className="flex flex-col gap-1">
+                  <span className="ml-2 mt-2 mb-1 text-base font-semibold">
                     Data
                   </span>
                   <div className="w-full">
                     <input
                       type="date"
                       name="date"
-                      className="w-full input-accent px-5 py-1 rounded-md "
+                      className="w-full input-accent px-5 py-1 rounded-md"
                       required
+                      value={today} 
                     />
                   </div>
                 </div>
@@ -242,31 +251,31 @@ const AddCar = ({title,route_name}) => {
               </div> */}
               {/*location */}
               <div className="flex  flex-col gap-1 w-full">
-                  <span className="ml-2 mt-2 mb-1 text-base font-semibold ">
-                    Location
-                  </span>
-                  <select
-                    name="location"
-                    className="w-full input-accent px-5 py-1 rounded-md "
-                  >
-                    <option disabled>choose location</option>
-                    <option>Motijheel</option>
-                    <option>Kamalapur</option>
-                    <option>Paltan</option>
-                    <option>Mohammadpur</option>
-                    <option>Dhanmondi</option>
-                    <option>Mirpur</option>
-                    <option>Gulshan</option>
-                    <option>Banani</option>
-                    <option>Uttara</option>
-                    <option>Sadarghat</option>
-                    <option>Farmgate</option>
-                    <option>Hazrat Shahjalal International Airport</option>
-                    <option>Kallyanpur</option>
-                    <option>Shyamoli</option>
-                    <option>Badda</option>
-                  </select>
-                </div>
+                <span className="ml-2 mt-2 mb-1 text-base font-semibold ">
+                  Location
+                </span>
+                <select
+                  name="location"
+                  className="w-full input-accent px-5 py-1 rounded-md "
+                >
+                  <option disabled>choose location</option>
+                  <option>Motijheel</option>
+                  <option>Kamalapur</option>
+                  <option>Paltan</option>
+                  <option>Mohammadpur</option>
+                  <option>Dhanmondi</option>
+                  <option>Mirpur</option>
+                  <option>Gulshan</option>
+                  <option>Banani</option>
+                  <option>Uttara</option>
+                  <option>Sadarghat</option>
+                  <option>Farmgate</option>
+                  <option>Hazrat Shahjalal International Airport</option>
+                  <option>Kallyanpur</option>
+                  <option>Shyamoli</option>
+                  <option>Badda</option>
+                </select>
+              </div>
 
               {/* button */}
               <div className=" grid grid-cols-1 items-center gap-2 w-full">

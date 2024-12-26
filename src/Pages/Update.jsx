@@ -2,13 +2,21 @@ import { useLoaderData } from "react-router-dom";
 import AuthContext from "../Context/Authcontext/AuthContext";
 import Swal from "sweetalert2";
 import ReusableBanner from "../Component/Shared/ReusableBanner";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
-const Update = ({title,route_name}) => {
-    const data = useLoaderData();
-    title = <>Update Added Cars Data</>
-    route_name=<>my-cars/update</>
-  const {user}=useContext(AuthContext)
+const Update = ({ title, route_name }) => {
+  const data = useLoaderData();
+  title = <>Update Added Cars Data</>;
+  route_name = <>my-cars/update</>;
+  const { user } = useContext(AuthContext);
+  const [today, setToday] = useState("");
+  useEffect(() => {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, "0"); 
+    const day = String(currentDate.getDate()).padStart(2, "0");
+    setToday(`${year}-${month}-${day}`); // Set formatted date (YYYY-MM-DD)
+  }, [])
   // console.log(data);
   const {
     availability,
@@ -20,47 +28,53 @@ const Update = ({title,route_name}) => {
     model,
     reg_no,
     rental_price,
-    }= data
+  } = data;
 
-    const handleUpdate =e =>{
+  const handleUpdate = (e) => {
     e.preventDefault();
     const updateData = new FormData(e.target);
     const updateCarData = Object.fromEntries(updateData.entries());
     // console.log(updateCarData);
     // const {min,max,currency, ...newJob} = jobData;
-    const { gear,person,year,...finalData } = updateCarData;
-    finalData.Features = { gear,person, year };
-    finalData.admin_email=user?.email
+    const { gear, person, year, ...finalData } = updateCarData;
+    finalData.Features = { gear, person, year };
+    finalData.admin_email = user?.email;
     // console.log(finalData);
 
-    fetch(`https://rent-my-ride-server.vercel.app/update/${data._id}`,{
-        method:'PUT',
-        headers:{
-          'content-type':'application/json'},
-        body:JSON.stringify(finalData)
-      })
-      .then(res=>res.json())
-     .then(data=>{
+    fetch(`https://rent-my-ride-server.vercel.app/update/${data._id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(finalData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
         // console.log(data);
-       if (data.modifiedCount >0) {
-        Swal.fire({
+        if (data.modifiedCount > 0) {
+          Swal.fire({
             title: "Thanks",
             text: "Car data Updated Successfully !",
-            icon: "success"
+            icon: "success",
           });
-       }
-     })
-    }
+        }
+      });
+  };
   return (
     <div>
       <div>
-      <div className="mb-6">
-             <ReusableBanner title={title} route_name={route_name}></ReusableBanner>
-           </div>
+        <div className="mb-6">
+          <ReusableBanner
+            title={title}
+            route_name={route_name}
+          ></ReusableBanner>
+        </div>
         <div className="py-6 mt-10">
           <form onSubmit={handleUpdate} className="p-5 ">
             <div className="flex items-center flex-col mx-auto px-6 py-3 w-8/12 border border-blue-500 rounded-xl bg-gradient-to-r from-[#fe930779] to-[#F5F7F6] ">
-              <div className="text-3xl font-bold mt-3 mb-5 ">Update Added Car</div>
+              <div className="text-3xl font-bold mt-3 mb-5 ">
+                Update Added Car
+              </div>
               {/* model and name="rental-price"*/}
               <div className=" grid  grid-cols-1 items-center gap-4 w-full">
                 <div className="flex  flex-col gap-1 ">
@@ -123,18 +137,18 @@ const Update = ({title,route_name}) => {
                 </div>
               </div>
               {/* date */}
-              <div className=" grid  grid-cols-1 items-center gap-4 w-full">
-                <div className="flex  flex-col gap-1">
-                  <span className="ml-2 mt-2 mb-1 text-base font-semibold ">
+              <div className="grid grid-cols-1 items-center gap-4 w-full">
+                <div className="flex flex-col gap-1">
+                  <span className="ml-2 mt-2 mb-1 text-base font-semibold">
                     Data
                   </span>
                   <div className="w-full">
                     <input
                       type="date"
                       name="date"
-                      defaultValue={date}
-                      className="w-full input-accent px-5 py-1 rounded-md "
+                      className="w-full input-accent px-5 py-1 rounded-md"
                       required
+                      value={today} // Set today's date as default
                     />
                   </div>
                 </div>
@@ -261,33 +275,33 @@ const Update = ({title,route_name}) => {
                 </div>
               </div> */}
               {/*location */}
-                <div className="flex  flex-col gap-1 w-full">
-                  <span className="ml-2 mt-2 mb-1 text-base font-semibold ">
-                    Location
-                  </span>
-                  <select
-                    name="location"
-                    defaultValue={location}
-                    className="w-full input-accent px-5 py-1 rounded-md "
-                  >
-                    <option disabled>choose location</option>
-                    <option>Motijheel</option>
-                    <option>Kamalapur</option>
-                    <option>Paltan</option>
-                    <option>Mohammadpur</option>
-                    <option>Dhanmondi</option>
-                    <option>Mirpur</option>
-                    <option>Gulshan</option>
-                    <option>Banani</option>
-                    <option>Uttara</option>
-                    <option>Sadarghat</option>
-                    <option>Farmgate</option>
-                    <option>Hazrat Shahjalal International Airport</option>
-                    <option>Kallyanpur</option>
-                    <option>Shyamoli</option>
-                    <option>Badda</option>
-                  </select>
-                </div>
+              <div className="flex  flex-col gap-1 w-full">
+                <span className="ml-2 mt-2 mb-1 text-base font-semibold ">
+                  Location
+                </span>
+                <select
+                  name="location"
+                  defaultValue={location}
+                  className="w-full input-accent px-5 py-1 rounded-md "
+                >
+                  <option disabled>choose location</option>
+                  <option>Motijheel</option>
+                  <option>Kamalapur</option>
+                  <option>Paltan</option>
+                  <option>Mohammadpur</option>
+                  <option>Dhanmondi</option>
+                  <option>Mirpur</option>
+                  <option>Gulshan</option>
+                  <option>Banani</option>
+                  <option>Uttara</option>
+                  <option>Sadarghat</option>
+                  <option>Farmgate</option>
+                  <option>Hazrat Shahjalal International Airport</option>
+                  <option>Kallyanpur</option>
+                  <option>Shyamoli</option>
+                  <option>Badda</option>
+                </select>
+              </div>
 
               {/* button */}
               <div className=" grid grid-cols-1 items-center gap-2 w-full">

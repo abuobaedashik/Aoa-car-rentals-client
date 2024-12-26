@@ -3,7 +3,7 @@ import image from '../assets/banner/image.jpeg'
 import { FaApple, FaAppStore, FaGooglePlay } from 'react-icons/fa';
 const Extrasec = () => {
     return (
-        <div  className="overflow-hidden p-4 md:flex-row flex-col items-center justify-start flex opacity-7 border-2 px-6 gap-4  bg-cover bg-center bg-[#050C16]">
+        <div  className="overflow-hidden p-4 md:flex-row flex-col items-center justify-start flex opacity-7 py-12 border-2 px-6 gap-4  bg-cover bg-center bg-[#050C16]">
           <div className="flex  items-center justify-start flex-col gap-3 px-10">
           <div className="md:text-5xl text-xl  font-extrabold text-[#E00600]">Dreamsrental User Friendly App Available</div>
           <div className="text-base text-[#ffffff]">Appropriately monetize one-to-one interfaces rather than cutting-edge Competently disinte rmediate backward.</div>
