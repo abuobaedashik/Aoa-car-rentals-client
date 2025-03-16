@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import AuthContext from "../Context/Authcontext/AuthContext";
 import logo from '../assets/Logo/logo3.png'
+import logo2 from '../assets/banner/icons8-car-arcade-favicons/web/icons8-car-arcade-32.png'
 import { IoIosHome, IoMdAddCircleOutline } from "react-icons/io";
 import { MdOutlineEventAvailable } from "react-icons/md";
 import { ImProfile } from "react-icons/im";
@@ -13,6 +14,21 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Navbar = () => {
   const { user, SignOut } = useContext(AuthContext);
+  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   const handleSignOut =()=>{
     SignOut()
      .then(()=>{
@@ -40,7 +56,7 @@ const Navbar = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? "px-3 text-base text-[#FE9307] font-medium flex gap-1 items-center"
+            ? "px-3 text-base text-[#513B41] font-medium flex gap-1 items-center"
             : " flex gap-1 items-center text-sm font-medium px-3"
         }
         to="/"
@@ -53,7 +69,7 @@ const Navbar = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? "px-3 text-base text-[#FE9307] font-medium flex gap-1 items-center"
+            ? "px-3 text-base text-[#513B41] font-medium flex gap-1 items-center"
             : "flex gap-1 items-center text-sm font-medium px-3"
         }
         to="/available"
@@ -68,7 +84,7 @@ const Navbar = () => {
          <NavLink
         className={({ isActive }) =>
           isActive
-            ? "px-3 text-base text-[#FE9307] font-medium flex gap-1 items-center"
+            ? "px-3 text-base text-[#513B41] font-medium flex gap-1 items-center"
             : "flex gap-1 items-center text-sm font-medium px-3"
         }
         to="/add-car"
@@ -86,7 +102,7 @@ const Navbar = () => {
        <NavLink
         className={({ isActive }) =>
           isActive
-            ? "px-3 text-base text-[#FE9307] font-medium flex gap-1 items-center"
+            ? "px-3 text-base text-[#513B41] font-medium flex gap-1 items-center"
             : "flex gap-1 items-center text-sm font-medium px-3"
         }
         to="/my-cars"
@@ -103,7 +119,7 @@ const Navbar = () => {
        <NavLink
         className={({ isActive }) =>
           isActive
-            ? "px-3 text-base text-[#FE9307] font-medium flex gap-1 items-center"
+            ? "px-3 text-base text-[#513B41] font-medium flex gap-1 items-center"
             : "flex gap-1 items-center text-sm font-medium px-3"
         }
         to="/my-bookings"
@@ -119,7 +135,16 @@ const Navbar = () => {
   </>
   
   return (
-    <div className="navbar justify-between bg-[#ffffff] mx-auto mt-0 py-0  w-full">
+    <div 
+    className={`navbar text-[#230338]   justify-between max-w-[1920px]  md:max-w-[1920px]  fixed z-50  py-2   transition-all  bg-[#ffffff] mx-auto mt-0   md:py-6 sm:mb-2  duration-300 ${
+      isScrolled
+        ? "bg-[#FFFFFF]  navbar max-w-[1920px]  fixed z-10 "
+        : "bg-[#F83839]"
+
+        // #C8F4F9
+        // #7FE5F0 
+    }`}
+    >
       <div className="flex items-center justify-between ">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn text-xl btn-ghost lg:hidden">
@@ -134,7 +159,7 @@ const Navbar = () => {
         </div>
         <div className="text-xl flex items-center gap-2  ">
          <div className="rounded-full">
-           <img src={logo} className="w-20 h-20" alt="" />
+           <img src={logo2} className="w-12 h-12" alt="" />
          </div>
          <div className="text-xl md:text-2xl  font-bold text-[#FFA633]"><span className=" font-semibold text-[#131313]">Quick</span> Car Rentals</div>
            </div>

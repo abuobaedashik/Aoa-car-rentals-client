@@ -9,9 +9,9 @@ const Banner = () => {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
-      className=" relative bg-black/40 bg-gradient-to-r from-[#F5F7F6] to-[#fe9307b0] min-h-[500px] "
+      className=" flex items-center justify-center bg-black/40 bg-gradient-to-r from-[#F5F7F6] to-[#fe9307b0] min-h-[500px] "
     >
-      <div className="hero-content flex text-center  flex-col  justify-between items-center  ">
+      <div className="hero-content flex px-12  flex-col  justify-between items-center  ">
         <div className="flex items-center justify-center flex-col py-12">
           <h1 className="text-5xl animate__animated animation-duration:1s animate__delay-1s animate__fadeInUp font-bold text-[#ffffff]">Drive Your </h1>
           <h1 className="text-5xl mt-4 animate__delay-2s animate__animated animation-duration:2s animate__fadeInUp font-bold text-[#FE9307]">
@@ -29,7 +29,7 @@ const Banner = () => {
           </p>
         
            <NavLink to={'/available'}>
-           <button className="text-[#ffffff] animate__delay-4s animate__animated animation-duration:4s animate__fadeInUp text-lg font-semibold bg-[#FE9307] px-3 py-1 rounded-md border-none mt-4 hover:bg-[#fe9307b0]">
+           <button className="bg-[#F83839] animate__delay-4s animate__animated animation-duration:4s animate__fadeInUp text-lg font-semibold text-[#ffffff] px-3 py-1 rounded-md border-none mt-4 hover:bg-[#fe9307b0]">
             View Available Cars
           </button>
            </NavLink>

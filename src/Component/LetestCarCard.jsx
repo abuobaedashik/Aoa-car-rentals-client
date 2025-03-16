@@ -17,22 +17,22 @@ const LetestCarCard = ({ latest }) => {
     rental_price,
   } = latest;
   return (
-    <div className="pb-3 bg-[#ffffff] hover:bg-[#9DA1A0] rounded-md">
+    <div className="pb-3 bg-[#f8f8ff] rounded-md">
       {/* title */}
-        <p className="w-full rounded-t-md flex items-center justify-between text-[#fff] bg-[#0000ff8c] py-1 px-3 ">
-           <p className="text-xl font-bold">{model}</p>
-           <p className="text-base ">Post On : {date}</p>
-        </p>
       {/* image */}
       <div className="w-full">
-        <img src={image} alt={model} className="h-[200px] w-full" />
-        <div className="text-base hover:opacity-65 flex items-center justify-between px-3 bg-[#0000ff] text-[#ffffff] py-1">
+        <img src={image} alt={model} className="h-[250px] w-full object-cover rounded-t-xl" />
+        <div className="text-base hover:opacity-65 flex items-center justify-between px-3   py-1">
             <p className="">
-              $<span className="text-lg font-bold text-[#FF0]">{rental_price}</span>/per day
+              $<span className="text-lg font-bold text-[#F83839]">{rental_price}</span>per day
             </p>
             <p className="">{availability}</p>
         </div>
       </div>
+      <p className="w-full rounded-t-md flex items-center justify-between  py-1 px-3 ">
+           <p className="text-xl font-bold">{model}</p>
+           <p className="text-base ">Post On : {date}</p>
+        </p>
       {/* specification */}
       <div className="flex flex-col items-center justify-start gap-1 px-2 md:px-5 rounded-md text-[#828282] w-full text-base">
         <p className="icon mt-3 justify-center w-full border-3 border-red-600 flex items-center px-2  rounded-md bg-[#f2f7f6]">
