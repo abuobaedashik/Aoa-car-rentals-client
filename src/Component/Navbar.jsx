@@ -136,10 +136,10 @@ const Navbar = () => {
   
   return (
     <div 
-    className={`navbar text-[#230338]   justify-between max-w-[1920px]  md:max-w-[1920px]  fixed z-50  py-2   transition-all  bg-[#ffffff] mx-auto mt-0   md:py-6 sm:mb-2  duration-300 ${
+    className={`navbar text-[#C70D3A]   justify-between max-w-[1920px]  md:max-w-[1920px]  fixed z-50  py-2   transition-all  bg-[#ffffff] mx-auto mt-0   md:py-6 sm:mb-2  duration-300 ${
       isScrolled
         ? "bg-[#FFFFFF]  navbar max-w-[1920px]  fixed z-10 "
-        : "bg-[#F83839]"
+        : "bg-[#F83838]"
 
         // #C8F4F9
         // #7FE5F0 

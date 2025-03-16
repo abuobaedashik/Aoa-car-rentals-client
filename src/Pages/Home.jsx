@@ -1,4 +1,5 @@
 import Banner from "../Component/Banner";
+import Bgimg from "../Component/Bgimg";
 import Extrasec from "../Component/Extrasec";
 import RecentList from "../Component/RecentList";
 import WhyChooseUs from "../Component/WhyChooseUs";
@@ -20,9 +21,10 @@ const Home = () => {
           <RecentList></RecentList>
         </div>
       </section>
-      {/* extra section */}
-      <section className="mt-28 w-11/12 mx-auto">
+      {/* bgimg section */}
+      <section className="mt-0 mb-12 w-full mx-auto">
         {/* <Extrasec></Extrasec> */}
+        {/* <Bgimg></Bgimg> */}
       </section>
     </div>
   );
