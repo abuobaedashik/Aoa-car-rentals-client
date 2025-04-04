@@ -1,68 +1,64 @@
 import React from "react";
-import { FaCar } from "react-icons/fa";
+import { BsHeadset } from "react-icons/bs";
+import { FaCar, FaCarSide, FaMoneyBillWave } from "react-icons/fa";
+import { HiOutlineClipboardList } from "react-icons/hi";
 import { RiCustomerService2Line } from "react-icons/ri";
 import { TbHomeRibbon } from "react-icons/tb";
 
 const WhyChooseUs = () => {
   return (
-    <div>
-      <div className="text-4xl font-bold text-center text-[#230338] mt-3 animate__animated animate__slideInLeft animate__delay-1s animation-duration: 1s">
+    <div className=" mx-auto mt-20 mb-10  rounded-lg p-10 ">
+      <div className="text-4xl font-bold text-center overflow-hidden text-[#230338] mt-3 ">
         Why Choose Us
       </div>
-      <div className="text-lg text-center mb-12 text-[#230338] mt-4 animate__animated animate__slideInRight animate__delay-1s animation-duration: 5s">
+      <div className="text-lg text-center mb-12 overflow-hidden text-[#230338] mt-4">
         We are innovative and passionate about the work we do.
       </div>
       <div className="mt-6  flex flex-col md:flex-row justify-center  gap-5 min-h-72">
-        <div className=" gap-3 bg-[#ffffff] p-10 rounded-lg flex items-center justify-center flex-col hover:text-[#ffffff] ">
+        <div className=" gap-3 bg-[#ffffff] p-10 w-[500px] rounded-3xl flex items-center justify-center flex-col hover:text-[#ffffff] ">
           <p className="icon bg-[#ffffff] text-[#230338]  text-4xl  py-2 rounded-md ">
-            <FaCar />
+          <FaCarSide></FaCarSide>
           </p>
-          <p className="text-2xl font-bold text-[#230338] ">
-            Wide Variety of Car
+          <p className="text-xl font-bold text-[#230338] ">
+           Wide Range of Vehicles
           </p>
-          <p className="text-sm font-normal  text-[#131313b3] ">
-            From budget-friendly options to luxury vehicles, we have something
-            for every traveler. Enjoy competitive pricing, exceptional
-            reliability, and unmatched comfort in every ride.
+          <p className="text-sm font-normal  text-[#131313] ">
+          From economy cars to luxury SUVs — choose the perfect vehicle for your trip, every time.
           </p>
         </div>
-        <div className=" gap-3 bg-[#ffffff] p-10 rounded-lg flex items-center justify-center flex-col hover:text-[#ffffff] ">
+        
+        <div className=" gap-3 bg-[#ffffff] w-[500px] p-10 rounded-3xl flex items-center justify-center flex-col hover:text-[#ffffff] ">
           <p className="icon bg-[#ffffff] text-[#230338]  text-4xl  py-2 rounded-md ">
-            <FaCar />
+          <FaMoneyBillWave />
           </p>
-          <p className="text-2xl font-bold text-[#230338] ">
-            Wide Variety of Car
+          <p className="text-xl font-bold text-[#230338] ">
+          Affordable Pricing
           </p>
-          <p className="text-sm font-normal  text-[#131313b3] ">
-            From budget-friendly options to luxury vehicles, we have something
-            for every traveler. Enjoy competitive pricing, exceptional
-            reliability, and unmatched comfort in every ride.
+          <p className="text-sm font-normal  text-[#131313] ">
+          Get the best value for your money with transparent pricing and no hidden fees.
           </p>
         </div>
-        <div className=" gap-3 bg-[#ffffff] p-10 rounded-lg flex items-center justify-center flex-col hover:text-[#ffffff] ">
+
+        <div className=" gap-3 bg-[#ffffff] w-[500px] p-10 rounded-3xl flex items-center justify-center flex-col hover:text-[#ffffff] ">
           <p className="icon bg-[#ffffff] text-[#230338]  text-4xl  py-2 rounded-md ">
-            <FaCar />
+            <BsHeadset />
           </p>
-          <p className="text-2xl font-bold text-[#230338] ">
-            Wide Variety of Car
+          <p className="text-xl font-bold text-[#230338] ">
+          24/7 Customer Support
           </p>
-          <p className="text-sm font-normal  text-[#131313b3] ">
-            From budget-friendly options to luxury vehicles, we have something
-            for every traveler. Enjoy competitive pricing, exceptional
-            reliability, and unmatched comfort in every ride.
+          <p className="text-sm font-normal  text-[#131313] ">
+          We're here for you anytime, anywhere. Drive with peace of mind knowing help is just a call away.
           </p>
         </div>
-        <div className=" gap-3 bg-[#ffffff] p-10 rounded-lg flex items-center justify-center flex-col hover:text-[#ffffff] ">
+        <div className=" gap-3 bg-[#ffffff] w-[500px] p-10 rounded-3xl flex items-center justify-center flex-col hover:text-[#ffffff] ">
           <p className="icon bg-[#ffffff] text-[#230338]  text-4xl  py-2 rounded-md ">
-            <FaCar />
+           <HiOutlineClipboardList />
           </p>
-          <p className="text-2xl font-bold text-[#230338] ">
-            Wide Variety of Car
+          <p className="text-xl font-bold text-[#230338] ">
+          Easy Booking Process
           </p>
-          <p className="text-sm font-normal  text-[#131313b3] ">
-            From budget-friendly options to luxury vehicles, we have something
-            for every traveler. Enjoy competitive pricing, exceptional
-            reliability, and unmatched comfort in every ride.
+          <p className="text-sm font-normal  text-[#131313] ">
+          Rent your car in just a few clicks with our user-friendly online reservation system.
           </p>
         </div>
 
