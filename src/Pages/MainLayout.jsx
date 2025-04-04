@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const MainLayout = () => {
     return (
-        <div className='bg-[#F2F7F6]'>
+        <div className='bg-[#F2F7F6] min-h-screen'>
              <div className="mb-4">
               <div className="nav w-full z-20  fixed top-0 "><Navbar className=''></Navbar></div>
              </div> 

@@ -9,7 +9,7 @@ const Banner = () => {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
-      className=" flex items-center justify-center bg-black/40 bg-gradient-to-r from-[#F5F7F6] to-[#fe9307b0] min-h-[500px] "
+      className=" flex items-center justify-center bg-black/40 bg-gradient-to-r from-[#F5F7F6] to-[#fe9307b0] min-h-[600px] "
     >
       <div className="hero-content flex px-12  flex-col  justify-between items-center  ">
         <div className="flex items-center justify-center flex-col py-12">

@@ -23,7 +23,21 @@
     {
       "_id": "4",
       "name": "ALive Smith",
-      "rating": 3,
+      "rating": 4,
+      "details": "Smooth booking process and great customer support.",
+      "image": "https://randomuser.me/api/portraits/men/2.jpg"
+    },
+    {
+      "_id": "5",
+      "name": "Abdur Salam",
+      "rating": 5,
+      "details": "Smooth booking process and great customer support.",
+      "image": "https://randomuser.me/api/portraits/men/2.jpg"
+    },
+    {
+      "_id": "6",
+      "name": "ALive Smith",
+      "rating": 5,
       "details": "Smooth booking process and great customer support.",
       "image": "https://randomuser.me/api/portraits/men/2.jpg"
     }

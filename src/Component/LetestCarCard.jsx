@@ -2,6 +2,7 @@ import React from "react";
 import { GiGears } from "react-icons/gi";
 import { MdAirlineSeatReclineNormal } from "react-icons/md";
 import { TbManualGearbox } from "react-icons/tb";
+import { NavLink } from "react-router-dom";
 
 const LetestCarCard = ({ latest }) => {
   console.log(latest);
@@ -15,6 +16,7 @@ const LetestCarCard = ({ latest }) => {
     model,
     reg_no,
     rental_price,
+    _id
   } = latest;
   return (
     <div className="pb-3 bg-[#f8f8ff] rounded-md">
@@ -62,9 +64,9 @@ const LetestCarCard = ({ latest }) => {
           <p>Model Year: {Features?.year}</p>
         </p>
       </div>
-      <button className="book px-2  mx-auto flex items-center justify-center w-11/12 mt-4  py-1 bg-[#ff0000c3] hover:bg-[#e0070097] text-[#ffffff]  font-bold  ">
+      <NavLink to={`/available/details/${_id}`} className="book px-2  mx-auto flex items-center justify-center w-11/12 mt-4  py-1 bg-[#ff0000c3] hover:bg-[#e0070097] text-[#ffffff]  font-bold  ">
         Book Now
-      </button>
+      </NavLink>
     </div>
   );
 };

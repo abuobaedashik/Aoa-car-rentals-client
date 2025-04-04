@@ -11,8 +11,8 @@ const Available = ({ title, route_name }) => {
   title = <>Available Car</>;
   route_name = <>available</>;
   const allCar = useLoaderData();
-  const [sortOrder, setSortOrder] = useState(""); 
-  const [dateOrder, setDateOrder] = useState(""); 
+  const [sortOrder, setSortOrder] = useState("");
+  const [dateOrder, setDateOrder] = useState("");
   const [isGridView, setIsGridView] = useState(true);
 
   // Filter available cars
@@ -37,7 +37,7 @@ const Available = ({ title, route_name }) => {
         const dateA = new Date(a.date);
         const dateB = new Date(b.date);
 
-        if (isNaN(dateA) || isNaN(dateB)) return 0; 
+        if (isNaN(dateA) || isNaN(dateB)) return 0;
         return dateOrder === "desc" ? dateB - dateA : dateA - dateB;
       });
     }
@@ -45,7 +45,7 @@ const Available = ({ title, route_name }) => {
     return cars;
   };
 
-  const sortedCars = getSortedCars(); 
+  const sortedCars = getSortedCars();
 
   // Handle price sort change
   const handlePriceSortChange = (order) => {
@@ -56,7 +56,7 @@ const Available = ({ title, route_name }) => {
   // Handle date sort change
   const handleDateSortChange = (order) => {
     setDateOrder(order);
-    setSortOrder(""); 
+    setSortOrder("");
   };
 
   // Function to toggle view mode
@@ -132,7 +132,7 @@ const Available = ({ title, route_name }) => {
               onClick={toggleView}
             >
               <p className="text-xl">
-                <MdGridView />
+                <HiViewList />
               </p>
             </button>
             <button
@@ -140,7 +140,7 @@ const Available = ({ title, route_name }) => {
               onClick={toggleView}
             >
               <p className="text-xl">
-                <HiViewList />
+                <MdGridView />
               </p>
             </button>
           </p>

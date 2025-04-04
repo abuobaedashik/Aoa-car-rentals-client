@@ -17,12 +17,12 @@ const AvailableCard = ({ car }) => {
     rental_price,}=car;
   return (
     <div>
-      <div className="card card-compact bg-[#ffffff]  shadow-sm object-cover transform transition-transform duration-100 hover:bg-[#787a7ab1]   hover:scale-[1.03]">
+      <div className="card card-compact bg-[#ffffff]  shadow-sm object-cover transform transition-transform duration-100 hover:bg-[#f2f2f2]   hover:scale-[1.03]">
         <figure className="p-4">
           <img
             src={image}
             alt={model}
-            className="h-[200px] mb-2 rounded-md "
+            className="h-[200px] w-full mb-2 rounded-md "
           />
         </figure>
         <div className="card-body">
@@ -56,7 +56,7 @@ const AvailableCard = ({ car }) => {
             </div>
             
           </h2>
-          <Link to={`details/${car._id}`} className=" w-full btn bg-[#131313e7] hover:bg-[#127384] text-center font-bold flex items-center justify-center text-[#ffffff]">
+          <Link to={`details/${car._id}`} className=" w-full btn bg-[#F83839] hover:bg-[#127384] text-center font-bold flex items-center justify-center text-[#ffffff]">
             <button  className="text-center">Book Now</button>
           </Link>
         </div>
